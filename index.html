@@ -51,7 +51,7 @@
 
           <div class="list-group">
             <a href="javascript:beckham()" class="list-group-item active"><i class="fa fa-user"></i> David Beckham</a>
-            <a href="#" class="list-group-item"><i class="fa fa-user"></i> Wayne Rooney</a>
+            <a href="javascript:rooney()" class="list-group-item"><i class="fa fa-user"></i> Wayne Rooney</a>
             <a href="#" class="list-group-item"><i class="fa fa-user"></i> Lionel Messi</a>
             <a href="#" class="list-group-item"><i class="fa fa-user"></i> Thierry Henry</a>
             <a href="#" class="list-group-item"><i class="fa fa-user"></i> Frank Ribéry</a>
@@ -109,7 +109,7 @@
        .attr("cy", function(d) {
                return projection([d.geo.lng, d.geo.lat])[1];
        })
-       .attr("r", function(d){return 1 / d.rank * 50})
+       .attr("r", function(d){return d.rank/3})
        .style("fill", "#E2F12F")
        .style("stroke", "#016100")
        .style("stroke-width", 1)
@@ -133,17 +133,21 @@
 
     }
 
- 
+
 
     // load and display the World
-    
+
 
     function beckham(){
     $(".col-md-8").empty();
 
     drawMap("data/teamsCompeting2.json");
+    }
 
+    function rooney(){
+    $(".col-md-8").empty();
 
+    drawMap("data/teamsCompeting3.json");
     }
   </script>
   </body>
