@@ -11,27 +11,31 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"/>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <style>
     path {
       stroke: white;
       stroke-width: 0.25px;
-      fill: grey;
+      fill: #a1a1a1;
     }
     </style>
   </head>
 
   <body>
-    <div class="container">
-
-      <div class="page-header">
-        <h1>Something something Scraperwiki</h1>
-        <p class="lead">Just explaning the project a bit in a one-liner</p>
-        <div class="alert alert-info">
-          <i class="fa fa-lg fa-info-circle"></i>  This is a hack - expect bugs here and here
+    <div style="background: #eee; color: #666 !important; position: relative; top: -20px;">
+      <div class="container">
+        <div class="page-header">
+          <h1>Who rules the football world?</h1>
+          <p class="lead">Mapping World Cup football players' popularity</p>
         </div>
       </div>
+    </div>
 
+    <div class="container">
       <div class="row">
+        <div class="alert alert-info">
+          <i class="fa fa-lg fa-info-circle"></i>  <strong>This is a hack</strong> - expect bugs here and here
+        </div>
         <div class="col-md-4">
           <h3>
             List of players <br>
@@ -40,17 +44,17 @@
 
           <form role="form">
             <div class="form-group">
-              <input type="text" class="form-control" id="filterPlayers" placeholder="Cristiano Ronaldo">
+              <input type="text" class="form-control" id="filterPlayers" placeholder="ex: Cristiano Ronaldo">
               <span class="help-block">Type a player's name to filter the results</span>
             </div>
           </form>
 
           <div class="list-group">
-            <a href="#" class="list-group-item">David Beckham</a>
-            <a href="#" class="list-group-item">Wayne Rooney</a>
-            <a href="#" class="list-group-item">Lionel Messi</a>
-            <a href="#" class="list-group-item">Thierry Henry</a>
-            <a href="#" class="list-group-item">Frank Ribéry</a>
+            <a href="#" class="list-group-item active"><i class="fa fa-user"></i> David Beckham</a>
+            <a href="#" class="list-group-item"><i class="fa fa-user"></i> Wayne Rooney</a>
+            <a href="#" class="list-group-item"><i class="fa fa-user"></i> Lionel Messi</a>
+            <a href="#" class="list-group-item"><i class="fa fa-user"></i> Thierry Henry</a>
+            <a href="#" class="list-group-item"><i class="fa fa-user"></i> Frank Ribéry</a>
           </div>
 
         </div><!-- colmd4 -->
@@ -99,15 +103,17 @@
        .attr("cy", function(d) {
                return projection([d.geo.lng, d.geo.lat])[1];
        })
-       .attr("r", 5)
-       .style("fill", "#FF6464")
+       .attr("r", function(d){return 1 / d.rank * 50})
+       .style("fill", "#E2F12F")
+       .style("stroke", "#016100")
+       .style("stroke-width", 1)
        .on('mouseover', function(d){
           d3.select(this).transition(200)
           .attr("r", 10)
        })
        .on('mouseout', function(d){
           d3.select(this).transition(250)
-          .attr("r", 5)
+          .attr("r", 15)
        });
     });
 
